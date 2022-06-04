@@ -1,0 +1,54 @@
+{
+  "name": "navbar-dropdown-v1",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^2.5.1",
+    "@popperjs/core": "^2.9.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "cros": "^1.0.1",
+    "emailjs-com": "^2.6.4",
+    "express": "^4.17.1",
+    "firebase": "^8.4.2",
+    "font-awesome": "^4.7.0",
+    "joi-browser": "^13.4.0",
+    "jquery": "^3.6.0",
+    "lodash": "^4.17.10",
+    "popper.js": "^1.16.1",
+    "query-string": "^6.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-firebase-hooks": "^3.0.4",
+    "react-hook-form": "^7.6.4",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "react-select": "^4.3.1",
+    "react-toastify": "^4.1.0",
+    "yup": "^0.32.9"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

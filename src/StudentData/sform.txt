@@ -1,0 +1,84 @@
+import React from "react";
+import Joi from "joi-browser";
+import Form from "./form";
+import { getPcs, savePc } from "./studentInfo";
+import { getActions } from "./actions";
+
+class StudentForm extends Form {
+  state = {
+    data: {
+      title: "",
+      genreId: "",
+      numberInStock: "",
+      dailyRentalRate: ""
+    },
+    genres: [],
+    errors: {}
+  };
+
+  schema = {
+    _id: Joi.string(),
+    title: Joi.string()
+      .required()
+      .label("Title"),
+    genreId: Joi.string()
+      .required()
+      .label("Genre"),
+    numberInStock: Joi.number()
+      .required()
+      .min(0)
+      .max(100)
+      .label("Number in Stock"),
+    dailyRentalRate: Joi.number()
+      .required()
+      .min(0)
+      .max(10)
+      .label("Daily Rental Rate")
+  };
+
+  componentDidMount() {
+    const actions = getActions();
+    this.setState({ actions });
+
+    const pcId = this.props.match.params.id;
+    if (pcId === "new") return;
+
+    const pc = getPcs(pcId);
+    if (!pc) return this.props.history.replace("/not-found");
+
+    this.setState({ data: this.mapToViewModel(pc) });
+  }
+
+  mapToViewModel(pc) {
+    return {
+      _id: pc._id,
+      title: pc.title,
+      genreId: pc.actions._id,
+      numberInStock: pc.numberInStock,
+      dailyRentalRate: pc.dailyRentalRate
+    };
+  }
+
+  doSubmit = () => {
+    savePc(this.state.data);
+
+    this.props.history.push("/admin");
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>Student Form</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderInput("title", "Title")}
+          {this.renderSelect("genreId", "Genre", this.state.genres)}
+          {this.renderInput("numberInStock", "Number in Stock", "number")}
+          {this.renderInput("dailyRentalRate", "Rate")}
+          {this.renderButton("Save")}
+        </form>
+      </div>
+    );
+  }
+}
+
+export default StudentForm;
